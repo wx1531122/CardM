@@ -82,10 +82,12 @@ deactivate
 
 ### 1.5. Running with Docker Compose (Recommended)
 
+(Note: These commands use the Docker Compose V2 syntax, `docker compose`. If you have an older version of Docker Compose (V1), you might need to use `docker-compose` with a hyphen.)
+
 This is the recommended way to run the application as it encapsulates the environment and simplifies setup.
 
 **Prerequisites:**
-*   Docker Desktop (or Docker Engine + Docker Compose CLI) installed and running.
+*   Docker Desktop (or Docker Engine + Docker Compose CLI) installed and running. Ensure your Docker Compose version supports the V2 syntax (`docker compose`).
 
 **Instructions:**
 All commands should be run from the root of the repository (the directory containing the `docker-compose.yml` file and the `card_scheduler_project/` directory).
@@ -93,13 +95,13 @@ All commands should be run from the root of the repository (the directory contai
 1.  **Build and Start Services (First Time or After Changes):**
     This command builds the Docker image for the `web` service (if it doesn't exist or if `Dockerfile` or application code has changed) and starts the service in detached mode (`-d`).
     ```bash
-    docker-compose up --build -d
+    docker compose up --build -d
     ```
 
 2.  **Start Services (If Already Built):**
     If the image is already built and you just want to start the services:
     ```bash
-    docker-compose up -d
+    docker compose up -d
     ```
 
 3.  **Access the Application:**
@@ -109,14 +111,14 @@ All commands should be run from the root of the repository (the directory contai
 4.  **View Logs:**
     To view the logs from the `web` service (useful for debugging):
     ```bash
-    docker-compose logs -f web
+    docker compose logs -f web
     ```
     Press `CTRL+C` to stop following the logs.
 
 5.  **Stopping the Services:**
     To stop and remove the containers, networks, and volumes created by `up`:
     ```bash
-    docker-compose down
+    docker compose down
     ```
 
 **Data Persistence:**
