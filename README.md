@@ -80,6 +80,49 @@ To deactivate the virtual environment (optional, when you're done working):
 deactivate
 ```
 
+### 1.5. Running with Docker Compose (Recommended)
+
+This is the recommended way to run the application as it encapsulates the environment and simplifies setup.
+
+**Prerequisites:**
+*   Docker Desktop (or Docker Engine + Docker Compose CLI) installed and running.
+
+**Instructions:**
+All commands should be run from the root of the repository (the directory containing the `docker-compose.yml` file and the `card_scheduler_project/` directory).
+
+1.  **Build and Start Services (First Time or After Changes):**
+    This command builds the Docker image for the `web` service (if it doesn't exist or if `Dockerfile` or application code has changed) and starts the service in detached mode (`-d`).
+    ```bash
+    docker-compose up --build -d
+    ```
+
+2.  **Start Services (If Already Built):**
+    If the image is already built and you just want to start the services:
+    ```bash
+    docker-compose up -d
+    ```
+
+3.  **Access the Application:**
+    Once the services are running, open your web browser and navigate to:
+    [http://localhost:5000](http://localhost:5000)
+
+4.  **View Logs:**
+    To view the logs from the `web` service (useful for debugging):
+    ```bash
+    docker-compose logs -f web
+    ```
+    Press `CTRL+C` to stop following the logs.
+
+5.  **Stopping the Services:**
+    To stop and remove the containers, networks, and volumes created by `up`:
+    ```bash
+    docker-compose down
+    ```
+
+**Data Persistence:**
+*   The `docker-compose.yml` is configured to use a volume that maps the `./scheduler_data` directory (in the project root) to the `/app/database` directory inside the container.
+*   This means your SQLite database (`schedule.db`) will be stored in `./scheduler_data` on your host machine and will persist even if you stop or remove the Docker containers. The `scheduler_data` directory will be created automatically if it doesn't exist when the container starts.
+
 ## 2. Project Overview and Requirements
 
 ### 2.1. Project Overview
