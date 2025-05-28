@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   web:
     build:
       context: ./card_scheduler_project  # Specifies the directory containing the Dockerfile
       # dockerfile: Dockerfile # Optional: specify Dockerfile name if not 'Dockerfile'
     ports:
-      - "5000:5000"  # Maps host port 5000 to container port 5000
+      - "5003:5000"  # Maps host port 5003 to container port 5000
     volumes:
       # Persists the SQLite database by mapping a host directory to the container directory
       # where schedule.db is stored.

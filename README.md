@@ -106,7 +106,7 @@ All commands should be run from the root of the repository (the directory contai
 
 3.  **Access the Application:**
     Once the services are running, open your web browser and navigate to:
-    [http://localhost:5000](http://localhost:5000)
+    [http://localhost:5003](http://localhost:5003)
 
 4.  **View Logs:**
     To view the logs from the `web` service (useful for debugging):
