@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./card_scheduler_project  # Specifies the directory containing the Dockerfile
+      # dockerfile: Dockerfile # Optional: specify Dockerfile name if not 'Dockerfile'
+    ports:
+      - "5000:5000"  # Maps host port 5000 to container port 5000
+    volumes:
+      # Persists the SQLite database by mapping a host directory to the container directory
+      # where schedule.db is stored.
+      # The WORKDIR in the Dockerfile is /app, and models.py creates the database in
+      # a 'database' subdirectory. So, the path inside the container is /app/database.
+      - ./scheduler_data:/app/database
+    # Optional: Add environment variables if needed by the application
+    # environment:
+    #   - FLASK_ENV=development # Example
+
+# Optional: Define a top-level named volume if you prefer named volumes over host paths.
+# For this MVP, a host path mapping is simpler and sufficient.
+# volumes:
+#   scheduler_db_data: # This would then be used as "scheduler_db_data:/app/database" in the service.
